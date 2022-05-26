@@ -1,0 +1,43 @@
+
+
+<!DOCTYPE html>
+<head>
+   <title>lefred's todo using Redis</title>
+   <link rel="stylesheet" href="/static/stylesheets/style.css" type="text/css">
+   <link href="https://fonts.googleapis.com/css?family=Baloo+Bhai|Candal|Chewy&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+</head>
+<body>
+    <h1>lefred's todo using Redis</h1>
+   <div class="todo-container">
+      <h2>Todo List</h2>
+      <div class="todo">
+         <form action="" method="POST" class="todo-header"><input type="text" name="content"><button type="submit"><span class="fas fa-plus"></span></button></form>
+         <ul class="todo-list">
+            <% reply.forEach((details, index) => { %><% if (index == idTask) { %>
+            <li class="todo-list-item">
+               <form action="/edit/<%= index %>" method="POST"><input type="text" value="<%= details %>" name="content"><button type="submit">Modify</button><a href="/" class="cancel">Cancel</a></form>
+            </li>
+            <% } else { %>
+            <li class="todo-list-item">
+               <div class="todo-list-item-name"><%= details %></div>
+               <a href="/edit/<%= index %>" class="edit"> <span class="fas fa-edit"></span></a><a href="/remove/<%= index %>" class="remove"> <span class="fas fa-times"></span></a>
+            </li>
+            <% } %><% }) %>
+         </ul>
+      </div>
+   </div>
+   <div class="done-container">
+    <h2>Done List</h2>
+    <div class="done">
+       <ul class="done-list">
+          <% donereply.forEach((details, index) => { %>
+          <li class="done-list-item">
+             <div class="done-list-item-name"><%= details %></div>
+          </li>
+          <% }) %>
+       </ul>
+    </div>
+ </div>
+</body>
+
